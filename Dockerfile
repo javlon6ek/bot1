@@ -11,9 +11,6 @@ WORKDIR /app
 # Kerakli fayllarni nusxalash
 COPY . .
 
-# Python kutubxonalarini o‘rnatamiz
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
 
 # Botni ishga tushirish
-CMD ["python", "bot.py"]
+CMD ["python", "bot1.py"]
