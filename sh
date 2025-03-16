@@ -1,1 +1,1 @@
-apt-get update && apt-get install -y sqlite3 libsqlite3-dev
+python -c "import sqlite3; print('SQLite ishlayapti!')"
