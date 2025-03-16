@@ -11,12 +11,12 @@ WORKDIR /app
 # `requirements.txt` faylini nusxalash
 COPY requirements.txt .
 
-# Python kutubxonalarini o‘rnatamiz
-RUN 
+# Python kutubxonalarini o‘rnatamiz (bu yerda `RUN` kerak!)
+RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Barcha loyihani nusxalash
 COPY . .
 
 # Botni ishga tushirish
-CMD ["python", "bot.py"]
+CMD ["python", "bot1.py"]
