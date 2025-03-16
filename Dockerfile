@@ -1,19 +1,22 @@
 # Python 3.11 asosida konteyner yaratamiz
 FROM python:3.11
 
-# Tizim paketlarini o‘rnatamiz (sqlite3 ishlashi uchun kerak)
+# Tizim kutubxonalarini o‘rnatamiz
 RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Ishchi katalogni yaratamiz
+# Ishchi katalogni o‘rnatamiz
 WORKDIR /app
 
-# Kerakli fayllarni nusxalash
-COPY . .
+# `requirements.txt` faylini nusxalash
+COPY requirements.txt .
 
 # Python kutubxonalarini o‘rnatamiz
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Barcha loyihani nusxalash
+COPY . .
 
 # Botni ishga tushirish
-CMD ["python", "bot1.py"]
+CMD ["python", "bot.py"]
