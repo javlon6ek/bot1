@@ -1,18 +1,23 @@
+# Python 3.11 asosida konteyner yaratamiz
 FROM python:3.11
 
-# Tizim kutubxonalarini o‘rnatish
-RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev
+# Tizim paketlarini o‘rnatamiz (sqlite3, venv ishlashi uchun kerak)
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Ishchi katalogni yaratish
+# Ishchi katalogni yaratamiz
 WORKDIR /app
 
 # Kerakli fayllarni nusxalash
 COPY . .
 
-# Virtual muhit yaratish va bog‘lamalar o‘rnatish
-RUN python -m venv venv && \
-    . venv/bin/activate && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+# Virtual muhitni yaratamiz va kutubxonalarni o‘rnatamiz
+RUN python -m venv /opt/venv && \
+    /opt/venv/bin/pip install --upgrade pip && \
+    /opt/venv/bin/pip install -r requirements.txt
 
+# Virtual muhitni faollashtiramiz
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Botni ishga tushirish
 CMD ["python", "bot1.py"]
