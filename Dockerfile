@@ -9,9 +9,7 @@ WORKDIR /app
 # Kerakli fayllarni nusxalash
 COPY . .
 
-# Virtual muhit yaratish va bog‘lamalar o‘rnatish
-RUN python -m venv venv && \
-    . venv/bin/activate && \
+
     pip install --upgrade pip && \
     pip install -r requirements.txt
 
