@@ -12,7 +12,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Python kutubxonalarini o‘rnatamiz
-RUN pip install --no-cache-dir --upgrade pip && \
+RUN 
     pip install --no-cache-dir -r requirements.txt
 
 # Barcha loyihani nusxalash
