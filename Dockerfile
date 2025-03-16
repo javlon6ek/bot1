@@ -1,14 +1,18 @@
-# Python 3.11 versiyasidan foydalanamiz
 FROM python:3.11
 
-# Ishchi katalogni yaratamiz
+# Tizim kutubxonalarini o‘rnatish
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev
+
+# Ishchi katalogni yaratish
 WORKDIR /app
 
-# Kerakli fayllarni konteyner ichiga nusxalaymiz
+# Kerakli fayllarni nusxalash
 COPY . .
 
-# Pip va kutubxonalarni yangilaymiz
-RUN pip install --no-cache-dir -r requirements.txt
+# Virtual muhit yaratish va bog‘lamalar o‘rnatish
+RUN python -m venv venv && \
+    . venv/bin/activate && \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Botni ishga tushirish
 CMD ["python", "bot1.py"]
