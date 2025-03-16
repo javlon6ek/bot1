@@ -1,1 +1,3 @@
-python -c "import sqlite3; print('SQLite ishlayapti!')"
+# Keraksiz kutubxonalarni olib tashlang
+sqlite3
+libsqlite3-dev
